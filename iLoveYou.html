@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I Love You</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2589/2589175.png"
+      class="heart-decoration heart1"
+      alt="Coração decorativo"
+    />
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2589/2589175.png"
+      class="heart-decoration heart2"
+      alt="Coração decorativo"
+    />
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2589/2589175.png"
+      class="heart-decoration heart3"
+      alt="Coração decorativo"
+    />
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/2589/2589175.png"
+      class="heart-decoration heart4"
+      alt="Coração decorativo"
+    />
+
+    <div class="container">
+      <h1>I Love You</h1>
+
+      <div class="image-gallery">
+        <img src="./images/img1.jpg" alt="Imagem 1" class="gallery-image" />
+        <img src="./images/img2.jpg" alt="Imagem 2" class="gallery-image" />
+        <img src="./images/img3.jpg" alt="Imagem 3" class="gallery-image" />
+        <img src="./images/img4.jpg" alt="Imagem 4" class="gallery-image" />
+      </div>
+      <div id="lightbox" class="lightbox" style="display: none">
+        <img id="lightbox-img" src="" alt="Imagem ampliada" />
+      </div>
+
+      <p>
+        Nunca pensei que uma pessoa me faria tão bem como você faz.<br />
+        Meus dias são melhores quando falo com você. Não consigo dormir sem
+        ouvir sua voz.<br />
+        Eu tenho certeza de que encontrei o amor da minha vida.<br />
+        Vamos superar todos os nossos desafios, que são diários, e tenho a
+        absoluta certeza de que somos eternos.<br />
+        Eu te amo, meu amor.
+      </p>
+    </div>
+    <script>
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const galleryImages = document.querySelectorAll(".gallery-image");
+
+      galleryImages.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.style.display = "flex";
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      });
+    </script>
+  </body>
+</html>
