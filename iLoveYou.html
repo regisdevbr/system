@@ -9,8 +9,46 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .audio-player {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        border-radius: 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .audio-player audio {
+        width: 250px;
+      }
+      .play-button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-family: 'Dancing Script', cursive;
+        font-size: 16px;
+      }
+      .play-button:hover {
+        background: #ff5252;
+      }
+    </style>
   </head>
   <body>
+    <div class="audio-player">
+      <button class="play-button" onclick="toggleMusic()">Tocar Música</button>
+      <audio id="background-music" loop>
+        <source src="./Os 10 Mandamentos do Amor - Eduardo Costa.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+      </audio>
+    </div>
     <img
       src="https://cdn-icons-png.flaticon.com/512/2589/2589175.png"
       class="heart-decoration heart1"
@@ -36,10 +74,10 @@
       <h1>I Love You</h1>
 
       <div class="image-gallery">
-        <img src="./images/img1.jpg" alt="Imagem 1" class="gallery-image" />
-        <img src="./images/img2.jpg" alt="Imagem 2" class="gallery-image" />
-        <img src="./images/img3.jpg" alt="Imagem 3" class="gallery-image" />
-        <img src="./images/img4.jpg" alt="Imagem 4" class="gallery-image" />
+        <img src="./images/IMG1.jpg" alt="Imagem 1" class="gallery-image" />
+        <img src="./images/IMG2.jpg" alt="Imagem 2" class="gallery-image" />
+        <img src="./images/IMG3.jpg" alt="Imagem 3" class="gallery-image" />
+        <img src="./images/IMG4.jpg" alt="Imagem 4" class="gallery-image" />
       </div>
       <div id="lightbox" class="lightbox" style="display: none">
         <img id="lightbox-img" src="" alt="Imagem ampliada" />
@@ -56,6 +94,28 @@
       </p>
     </div>
     <script>
+      // Configuração do áudio
+      const backgroundMusic = document.getElementById('background-music');
+      backgroundMusic.volume = 0.3; // Volume inicial em 30%
+      let isPlaying = false;
+
+      function toggleMusic() {
+        if (isPlaying) {
+          backgroundMusic.pause();
+          document.querySelector('.play-button').textContent = 'Tocar Música';
+        } else {
+          backgroundMusic.play()
+            .then(() => {
+              document.querySelector('.play-button').textContent = 'Pausar Música';
+            })
+            .catch(error => {
+              console.log("Erro ao tocar música:", error);
+              alert("Clique em 'Tocar Música' para iniciar a música de fundo");
+            });
+        }
+        isPlaying = !isPlaying;
+      }
+
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightbox-img");
       const galleryImages = document.querySelectorAll(".gallery-image");
